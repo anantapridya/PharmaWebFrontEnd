@@ -67,7 +67,7 @@ export default function Navbar() {
           </li>
           <li
             className={`mx-[50px] xl:mx-[30px] hover:drop-shadow-3xl hidden ${
-              isAdmin() ? "md:inline hidden" : "hidden"
+              isAdmin() ? "md:inline" : "hidden"
             }`}
           >
             <Link to="/add">Add</Link>
