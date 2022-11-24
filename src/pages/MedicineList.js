@@ -48,8 +48,9 @@ const MedicineList = () => {
       headers: {
         "Authorization": "Bearer " + token,
         "Content-Type": "application/json"
-      },
-      credentials: "include",
+      }
+      // ,
+      // credentials: "include",
     })
     .then (async (response) => {
       const data = await response.json()
