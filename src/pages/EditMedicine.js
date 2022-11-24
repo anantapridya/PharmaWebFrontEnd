@@ -29,7 +29,7 @@ const EditMedicine = () => {
     const { __token } = getUser()
     if (!( isAdmin() && __token ))
       window.location.href = '/'
-    fetch(`https://pharmaweb14.herokuapp.com/${medicineId}`, {
+    fetch(`http://localhost:9000/${medicineId}`, {
       headers: {
         "Authorization": "Bearer " + __token,
         "Content-Type": "application/json"
@@ -66,7 +66,7 @@ const EditMedicine = () => {
     if (medicine.stock < 0) {
       toast.error("Stok obat tidak boleh negatif")
     } else {
-      fetch(`https://pharmaweb14.herokuapp.com/${medicineId}`, {
+      fetch(`http://localhost:9000/${medicineId}`, {
         method: 'PUT',
         headers: {
           "Authorization": "Bearer " + __token,
@@ -97,7 +97,7 @@ const EditMedicine = () => {
   }
   
   return (
-    <div className="bg-putih md:h-screen">
+    <div className="bg-putih h-screen">
       <ToastContainer/>
       <Navbar/>
       <div className="font-body mx-9 my-4 md:mx-[120px] md:my-[30px] text-[15px] md:text-xl">
@@ -105,7 +105,7 @@ const EditMedicine = () => {
           Edit Obat
         </h1>
 
-        <div className="w-full grid grid-cols-2">
+        <div className="w-full md:grid grid-cols-2">
           <div>
             <p>Nama Obat :</p>
             <div className="inline-block">
@@ -117,17 +117,7 @@ const EditMedicine = () => {
               />
             </div>
           </div>
-          <div>
-            <p>Stok Obat :</p>
-            <DefaultInput
-              type="number"
-              className="w-[200px] h-[50px]"
-              name="stock"
-              onChange={handleChange}
-              value={medicine.stock}
-            />
-          </div>
-          <div>
+          <div className="order-1">
             <p>Manufacturer Obat :</p>
             <div className="inline-block">
               <DefaultInput
@@ -137,7 +127,17 @@ const EditMedicine = () => {
                 value={medicine.manufacturer}
               />
             </div>
-          </div>        
+          </div>  
+          <div className="order-1">
+            <p>Stok Obat :</p>
+            <DefaultInput
+              type="number"
+              className="w-[200px] h-[50px]"
+              name="stock"
+              onChange={handleChange}
+              value={medicine.stock}
+            />
+          </div>      
           <div>
             <p>Harga Obat :</p>
             <p className="text-[15px] italic text-gray-400"></p>
