@@ -35,8 +35,9 @@ export default function MedicineDesc() {
       headers: {
         Authorization: "Bearer " + `${token}`,
         "Content-Type": "application/json",
-      },
-      credentials: "include",
+      }
+      // ,
+      // credentials: "include",
     }).then(async (res) => {
       const data = await res.json();
       setMedicine(data);

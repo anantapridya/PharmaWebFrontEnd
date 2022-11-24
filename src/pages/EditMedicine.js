@@ -33,8 +33,9 @@ const EditMedicine = () => {
       headers: {
         "Authorization": "Bearer " + __token,
         "Content-Type": "application/json"
-      },
-      credentials: "include",
+      }
+      // ,
+      // credentials: "include",
     })
       .then(res => res.json())
       .then(data => setMedicine({
