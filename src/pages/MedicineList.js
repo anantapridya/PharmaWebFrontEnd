@@ -106,7 +106,8 @@ const MedicineConfig = ({ items, refreshMedicineData }) =>{
         "Authorization": "Bearer " + __token,
         "Content-Type": "application/json"
       },
-      credentials: "include",
+      // ,
+      // credentials: "include",
       body: JSON.stringify({ userId: __id })
     })
       .then(response => response.json())
