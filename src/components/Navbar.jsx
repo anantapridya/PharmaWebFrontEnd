@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import logo from "../img/websitelogo.png";
 import React, { useState, useEffect } from "react";
 import Dropdown from "./common/Dropdown";
@@ -7,28 +7,29 @@ import { toast, ToastContainer } from "react-toastify";
 
 export default function Navbar() {
   const [isLogged, setIsLogged] = useState();
-
-  const ListClick = () => {
-    useNavigate("/list");
+  const navigate = useNavigate();
+  const listClick = () => {
+    navigate("/list");
   };
 
-  const AddClick = () => {
-    useNavigate("/add");
+  const addClick = () => {
+    navigate("/add");
   };
 
   const handleClick = () => {
     localStorage.clear();
     setIsLogged(false);
     toast.success("Anda keluar");
-    window.location.href = "/";
+    navigate("/");
+    //window.location.href = "/";
   };
   const dropddownnavbaradmin = [
-    { id: 1, value: "List", onClick: ListClick },
-    { id: 2, value: "Add", onClick: AddClick },
+    { id: 1, value: "List", onClick: listClick },
+    { id: 2, value: "Add", onClick: addClick },
     { id: 3, value: "Sign Out", onClick: handleClick },
   ];
   const dropddownnavbar = [
-    { id: 1, value: "List", onClick: ListClick },
+    { id: 1, value: "List", onClick: listClick },
     { id: 2, value: "Sign Out", onClick: handleClick },
   ];
 
