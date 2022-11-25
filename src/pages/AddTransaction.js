@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams, Navigate } from "react-router-dom";
 
 import { isAdmin, getUser } from "../helpers/auth"
 
@@ -16,15 +16,15 @@ const AddTransaction = () => {
 
   const [searchParams, setSearchParams] = useSearchParams()
   const medicineId = searchParams.get('id')
-
+  const [isDone, setIsDone] = useState();
   const [medicine, setMedicine] = React.useState({
     name: '',
     stock: ''
   })
   React.useEffect(() => {
     const { __token } = getUser()
-    if (!( isAdmin() && __token ))
-      window.location.href = '/'
+    // if (!( isAdmin() && __token ))
+    //   window.location.href = '/'
     fetch(`https://pharmaweb14.herokuapp.com/${medicineId}`, {
       headers: {
         "Authorization": "Bearer " + __token,
@@ -88,7 +88,8 @@ const AddTransaction = () => {
             isOpen: true,
             desc: "Transaksi obat berhasil ditambahkan.",
             onClose() {
-              window.location.href = "../desc/?id=" + medicineId
+              setIsDone(true)
+              //window.location.href = "../desc/?id=" + medicineId
             }
           })
         else
@@ -121,6 +122,16 @@ const AddTransaction = () => {
       }))
     }
   })
+
+  if (!isAdmin())
+  {
+    return <Navigate replace to="/" />;
+  } 
+  else if (isDone)
+  {
+    return <Navigate replace to="/list"/>;
+  }
+
 
   return (
     <div className="bg-putih h-screen">

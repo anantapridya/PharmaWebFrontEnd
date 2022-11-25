@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams, Link, Navigate } from "react-router-dom";
 import {toast, ToastContainer} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css";
 import DefaultBtn from "../components/common/DefaultBtn";
@@ -10,7 +10,7 @@ import Navbar from "../components/Navbar";
 import { isAdmin, getUser } from "../helpers/auth"
 
 const EditMedicine = () => {
-
+  const [isDone, setIsDone] = useState();
   const [ medicine, setMedicine ] = React.useState({
     name: '',
     description: '',
@@ -27,8 +27,8 @@ const EditMedicine = () => {
 
   React.useEffect(() => {
     const { __token } = getUser()
-    if (!( isAdmin() && __token ))
-      window.location.href = '/'
+    // if (!( isAdmin() && __token ))
+    //   window.location.href = '/'
     fetch(`https://pharmaweb14.herokuapp.com/${medicineId}`, {
       headers: {
         "Authorization": "Bearer " + __token,
@@ -90,11 +90,21 @@ const EditMedicine = () => {
         tampilkan komponen modal tergantung isi respon dari API
         */
         toast.success(data.message)
-        setTimeout(() => {
-          window.location.href = "/desc?id=" + medicineId;
-        }, 2000);
+        setIsDone(true)
+        // setTimeout(() => {
+        //   window.location.href = "/desc?id=" + medicineId;
+        // }, 2000);
       })
     }
+  }
+
+  if (!isAdmin())
+  {
+    return <Navigate replace to="/" />;
+  } 
+  else if (isDone)
+  {
+    return <Navigate replace to="/list"/>;
   }
   
   return (

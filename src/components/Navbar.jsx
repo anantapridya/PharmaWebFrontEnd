@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../img/websitelogo.png";
 import React, { useState, useEffect } from "react";
 import Dropdown from "./common/Dropdown";
@@ -8,32 +8,29 @@ import { toast, ToastContainer } from "react-toastify";
 export default function Navbar() {
   const [isLogged, setIsLogged] = useState();
 
-  const listClick = () => {
-    window.location.href = "/list";
+  const ListClick = () => {
+    useNavigate("/list");
   };
 
-  const addClick = () => {
-    window.location.href = "/add";
+  const AddClick = () => {
+    useNavigate("/add");
   };
 
   const handleClick = () => {
     localStorage.clear();
     setIsLogged(false);
-    window.location.href = "/";
     toast.success("Anda keluar");
-    setTimeout(() => {
-      window.location.href = "/";
-    }, 3000);
+    window.location.href = "/";
   };
   const dropddownnavbaradmin = [
-    {id:1, value:"List", onClick: listClick},
-    {id:2, value:"Add", onClick: addClick},
-    {id:3, value:"Sign Out", onClick: handleClick}
-  ]
+    { id: 1, value: "List", onClick: ListClick },
+    { id: 2, value: "Add", onClick: AddClick },
+    { id: 3, value: "Sign Out", onClick: handleClick },
+  ];
   const dropddownnavbar = [
-    {id:1, value:"List", onClick: listClick},
-    {id:2, value:"Sign Out", onClick: handleClick}
-  ]
+    { id: 1, value: "List", onClick: ListClick },
+    { id: 2, value: "Sign Out", onClick: handleClick },
+  ];
 
   return (
     <>
@@ -92,12 +89,22 @@ export default function Navbar() {
             </button>
           </li>
           <li className={isAuth() ? "inline" : "hidden"}>
-            <Dropdown items={dropddownnavbaradmin} judul="Menu" className={`${
-              isAdmin() ? "inline" : "hidden"} text-biru-tua text-[18px] md:text-[22px] bg-transparent bg-putih md:hidden inline`} />
+            <Dropdown
+              items={dropddownnavbaradmin}
+              judul="Menu"
+              className={`${
+                isAdmin() ? "inline" : "hidden"
+              } text-biru-tua text-[18px] md:text-[22px] bg-transparent bg-putih md:hidden inline`}
+            />
           </li>
           <li className={isAuth() ? "inline" : "hidden"}>
-            <Dropdown items={dropddownnavbar} judul="Menu" className={`${
-              isAdmin() ? "hidden" : "inline"} text-biru-tua text-[18px] md:text-[22px] bg-transparent bg-putih md:hidden inline`}/>
+            <Dropdown
+              items={dropddownnavbar}
+              judul="Menu"
+              className={`${
+                isAdmin() ? "hidden" : "inline"
+              } text-biru-tua text-[18px] md:text-[22px] bg-transparent bg-putih md:hidden inline`}
+            />
           </li>
         </ul>
       </nav>

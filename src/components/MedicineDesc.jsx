@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams, Navigate } from "react-router-dom";
 import backArrow from "../img/back-arrow.png";
 import editMedicine from "../img/edit-medicine.png";
 import Navbar from "./Navbar.jsx";
@@ -28,14 +28,15 @@ export default function MedicineDesc() {
     if (token) {
       setToken(token);
       setIsAuthorized(true);
-    } else
-      window.location.href = '/'
+    } else {
+      return <Navigate replace to="/" />;
+    }
 
     fetch(`https://pharmaweb14.herokuapp.com/${medicineId}`, {
       headers: {
         Authorization: "Bearer " + `${token}`,
         "Content-Type": "application/json",
-      }
+      },
       // ,
       // credentials: "include",
     }).then(async (res) => {
@@ -47,7 +48,11 @@ export default function MedicineDesc() {
   return (
     <>
       <Navbar />
-      <main className="bg-putih relative w-full grid h-full md:h-[calc(100vh_-_64px)] overflow-y-hidden md:grid-cols-desc-page md:grid-rows-desc-page">
+      <main
+        className={`bg-putih relative w-full grid h-full md:h-[calc(100vh_-_64px)] overflow-y-hidden ${
+          isAdmin() ? "md:grid-cols-desc-page md:grid-rows-desc-page" : ""
+        }`}
+      >
         <Link
           to="/list"
           className="absolute h-[20px] md:h-[40px] top-[15px] md:top-[20px] left-[25px] md:left-[50px] z-[1] hover:-translate-y-1  transition-all"
