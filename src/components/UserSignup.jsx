@@ -24,7 +24,7 @@ export default function SignupPage() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    fetch("https://pharmaweb14.herokuapp.com/api/auth/signup", {
+    fetch("https://pharma-web-backend-nine.vercel.app/api/auth/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),

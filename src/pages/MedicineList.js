@@ -44,7 +44,7 @@ const MedicineList = () => {
     }
     
     if (query) query = '?name=' + query
-    fetch(`https://pharmaweb14.herokuapp.com/` + query, {
+    fetch(`https://pharma-web-front-end.vercel.app/` + query, {
       headers: {
         "Authorization": "Bearer " + token,
         "Content-Type": "application/json"
@@ -100,7 +100,7 @@ const MedicineConfig = ({ items, refreshMedicineData }) =>{
 
   function deleteMedicine(id) {
     const { __token, __id } = getUser()
-    fetch(`https://pharmaweb14.herokuapp.com/`+id, {
+    fetch(`https://pharma-web-front-end.vercel.app/`+id, {
       method: 'DELETE',
       headers: {
         "Authorization": "Bearer " + __token,

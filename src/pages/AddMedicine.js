@@ -49,7 +49,7 @@ const AddMedicine = () => {
       price: parseInt(formData.price),
       userId: __id
     }
-    fetch('https://pharmaweb14.herokuapp.com/add', {
+    fetch('https://pharma-web-front-end.vercel.app/add', {
       method: 'POST',
       headers: {
         "Authorization": "Bearer " + __token,

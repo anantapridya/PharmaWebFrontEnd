@@ -32,7 +32,7 @@ export default function MedicineDesc() {
       return <Navigate replace to="/" />;
     }
 
-    fetch(`https://pharmaweb14.herokuapp.com/${medicineId}`, {
+    fetch(`https://pharma-web-backend-nine.vercel.app/${medicineId}`, {
       headers: {
         Authorization: "Bearer " + `${token}`,
         "Content-Type": "application/json",
