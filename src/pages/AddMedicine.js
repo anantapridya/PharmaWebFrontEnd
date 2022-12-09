@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Link, useSearchParams, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import DefaultBtn from "../components/common/DefaultBtn";
 import DefaultInput from "../components/common/DefaultInput";
@@ -16,7 +16,7 @@ const AddMedicine = () => {
   //     window.location.href = '/'
   // }, [])
 
-  const [isDone, setIsDone] = useState();
+  const navigate = useNavigate();
   const [formData, setFormData] = React.useState({
     name: '',
     manufacturer: '',
@@ -25,7 +25,7 @@ const AddMedicine = () => {
     price:''
   })
 
-  console.log(formData)
+  // console.log(formData)
 
   function handleChange(event) {
     const { type, name, value } = event.target
@@ -79,8 +79,7 @@ const AddMedicine = () => {
           isOpen: true,
           desc: "Data obat berhasil ditambahkan!",
           onClose() {
-            setIsDone(true)
-            //window.location.href = '../list'
+            navigate("/list")
           }
         }))
       }
@@ -100,13 +99,9 @@ const AddMedicine = () => {
   {
     return <Navigate replace to="/" />;
   } 
-  else if (isDone)
-  {
-    return <Navigate replace to="/list"/>;
-  }
 
   return (
-    <div className="bg-putih h-screen">
+    <div className="bg-putih h-full md:h-screen pb-8">
       <Modal
         show={modalState.isOpen}
         onClose={modalState.onClose}
@@ -183,7 +178,7 @@ const AddMedicine = () => {
           />
         </div>
 
-        <div className="flex flex-col-reverse sm:flex-row items-center sm:justify-between w-full mt-2 sm:mt-12 gap-2 sm:gap-0">
+        <div className="flex flex-row items-center justify-between w-full mt-2 sm:mt-12 gap-2 sm:gap-0 mb-4">
         <Link to="/list">
             <DefaultBtn
               type="button"

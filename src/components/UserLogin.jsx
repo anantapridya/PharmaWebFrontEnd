@@ -38,7 +38,9 @@ export default function UserLogin() {
         localStorage.setItem("user", JSON.stringify(data.user));
         localStorage.setItem("token", JSON.stringify(data.token));
         toast.success("Selamat datang!");
-        setIsLoged(true);
+        setTimeout(() => {
+          setIsLoged(true);
+        }, 1000);
       })
       .catch((error) => {
         toast.error(error);

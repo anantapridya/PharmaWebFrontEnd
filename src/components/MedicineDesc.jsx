@@ -137,7 +137,7 @@ function MedicineDescArticle({ medicineData, isAuthorized }) {
           Stok: {medicineData.stock}
         </p>
         <p className="font-body text-xs lg:text-[27px] md:absolute md:bottom-[40px] md:right-[120px]">
-          Harga: Rp{medicineData.price.toLocaleString("id-ID")},00
+          Harga per Satuan: Rp{medicineData.price.toLocaleString("id-ID")},00
         </p>
         {isAdmin() && (
           <Link

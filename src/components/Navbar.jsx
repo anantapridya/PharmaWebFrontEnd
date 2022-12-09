@@ -19,9 +19,10 @@ export default function Navbar() {
   const handleClick = () => {
     localStorage.clear();
     setIsLogged(false);
-    toast.success("Anda keluar");
-    navigate("/");
-    //window.location.href = "/";
+    toast.success("Anda akan keluar");
+    setTimeout(() => {
+      navigate("/");
+    }, 2000);
   };
   const dropddownnavbaradmin = [
     { id: 1, value: "List", onClick: listClick },
