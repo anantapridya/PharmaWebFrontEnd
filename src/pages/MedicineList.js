@@ -65,7 +65,7 @@ const MedicineList = () => {
 
   return (
     <>
-      <div className="bg-putih h-full md:h-screen pb-8">
+      <div className="bg-putih h-full md:h-full pb-8">
         <ToastContainer/>
         <Navbar />
         <div className="mx-9 my-4 md:mx-[120px] md:my-[30px] flex flex-col">
@@ -104,7 +104,7 @@ const MedicineConfig = ({ items, refreshMedicineData }) =>{
         "Authorization": "Bearer " + __token,
         "Content-Type": "application/json"
       },
-      
+
       body: JSON.stringify({ userId: __id })
     })
       .then(response => response.json())
