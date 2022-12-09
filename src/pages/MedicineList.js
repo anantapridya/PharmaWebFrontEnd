@@ -44,7 +44,7 @@ const MedicineList = () => {
     }
     
     if (query) query = '?name=' + query
-    fetch(`https://pharma-web-front-end.vercel.app/` + query, {
+    fetch(`https://pharma-web-backend-nine.vercel.app/` + query, {
       headers: {
         "Authorization": "Bearer " + token,
         "Content-Type": "application/json"
@@ -100,7 +100,7 @@ const MedicineConfig = ({ items, refreshMedicineData }) =>{
 
   function deleteMedicine(id) {
     const { __token, __id } = getUser()
-    fetch(`https://pharma-web-front-end.vercel.app/`+id, {
+    fetch(`https://pharma-web-backend-nine.vercel.app/`+id, {
       method: 'DELETE',
       headers: {
         "Authorization": "Bearer " + __token,

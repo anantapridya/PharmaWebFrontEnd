@@ -29,7 +29,7 @@ const EditMedicine = () => {
     const { __token } = getUser()
     // if (!( isAdmin() && __token ))
     //   window.location.href = '/'
-    fetch(`https://pharma-web-front-end.vercel.app/${medicineId}`, {
+    fetch(`https://pharma-web-backend-nine.vercel.app/${medicineId}`, {
       headers: {
         "Authorization": "Bearer " + __token,
         "Content-Type": "application/json"
@@ -67,7 +67,7 @@ const EditMedicine = () => {
     if (medicine.stock < 0) {
       toast.error("Stok obat tidak boleh negatif")
     } else {
-      fetch(`https://pharma-web-front-end.vercel.app/${medicineId}`, {
+      fetch(`https://pharma-web-backend-nine.vercel.app/${medicineId}`, {
         method: 'PUT',
         headers: {
           "Authorization": "Bearer " + __token,
