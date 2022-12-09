@@ -60,7 +60,7 @@ export default function UserLogin() {
       <div className="w-[240px] sm:w-[500px] lg:w-[780px] bg-biru-muda/[.1] rounded-3xl backdrop-blur-sm shadow-3xl m-auto">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col items-center justify-center w-3/4 mx-auto my-[100px]"
+          className="flex flex-col items-center justify-center w-3/4 mx-auto mt-[50px] md:mt-[100px] mb-[33px] md:mb-[66px]"
         >
           <DefaultInput
             placeholder="Username"
@@ -78,12 +78,12 @@ export default function UserLogin() {
             type="password"
           />
 
-          <div className="flex flex-col-reverse sm:flex-row items-center sm:justify-between w-full mt-4 sm:mt-12 gap-2 sm:gap-0">
-            <Link to="/welcome">
+          <div className="flex items-center justify-between w-full mt-4 sm:mt-12 gap-2 sm:gap-0">
+            <Link to="/">
               <DefaultBtn
                 type="button"
                 judulButton="Kembali"
-                className="text-putih text-sm lg:text-xl lg:w-[150px] lg:h-[52px] py-2 hover:bg-putih hover:text-biru-tua hover:border-4 hover:border-biru-tua hover:transition-all"
+                className="text-sm lg:text-xl lg:w-[150px] lg:h-[52px] py-2 bg-white text-gray-400 outline outline-2 outline-gray-300 hover:text-biru-tua hover:border-4 hover:border-biru-tua hover:transition-all"
               />
             </Link>
 
@@ -97,6 +97,13 @@ export default function UserLogin() {
             {/* </Link> */}
           </div>
         </form>
+
+        <p className="font-body text-xs md:text-xl text-center mb-8">
+          Belum memiliki akun?{" "}
+          <span className="hover:underline">
+            <Link to="/signup">Daftar disini</Link>
+          </span>
+        </p>
       </div>
     </div>
   );
